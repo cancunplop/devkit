@@ -8,13 +8,13 @@ on:
     branches:
       - main
     paths-ignore: # don't rebuild on documentation change
-      - '**.md'
+      - "**.md"
   schedule:
-    - cron: '0 0 * * TUE'
+    - cron: "0 0 * * TUE"
 
 env:
-    IMAGE_TAGS: latest
-    IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  IMAGE_TAGS: latest
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
 jobs:
   push-ghcr:
@@ -27,9 +27,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        containerfile: 
-          - boxkit
-       #- fedora-example # Included as an example to demonstrate multi-image builds, uncomment to build the fedora-example container too
+        containerfile:
+          - devkit-alpine
+        #- fedora-example # Included as an example to demonstrate multi-image builds, uncomment to build the fedora-example container too
     steps:
       # Clone code to runner
       - name: Checkout
@@ -56,7 +56,7 @@ jobs:
           tags: ${{ env.IMAGE_TAGS }}
           labels: ${{ steps.meta.outputs.labels }}
           oci: true
-          
+
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12
       - name: Lowercase Registry
@@ -79,14 +79,14 @@ jobs:
           registry: ${{ steps.registry_case.outputs.lowercase }}
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
-            
+
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-            
+
       # Sign container
       - name: Install cosign
         uses: sigstore/cosign-installer@v3.8.1

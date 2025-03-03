@@ -1,0 +1,24 @@
+FROM quay.io/toolbx-images/alpine-toolbox:edge
+
+LABEL com.github.containers.toolbox="true" \
+      usage="This image is meant to be used with the toolbox or distrobox command" \
+      summary="A cloud-native terminal experience" \
+      maintainer="CAncun <plop1@bawah.fr>"
+
+# Copy the setup scripts and package list
+COPY ../scripts/alpine.sh /
+COPY ../scripts/extra-packages.sh /
+COPY ../scripts/distrobox-shims.sh /
+COPY ../packages/alpine.packages /
+COPY ../packages/alpine-testing.packages /
+COPY ../packages/python.packages /
+
+# Run the setup scripts
+RUN chmod +x alpine.sh distrobox-shims.sh extra-packages.sh && /alpine.sh
+RUN rm \
+  /alpine.sh \
+  /extra-packages.sh \
+  /distrobox-shims.sh \
+  /alpine.packages \
+  /alpine-testing.packages \
+  /python.packages \
