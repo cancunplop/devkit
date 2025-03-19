@@ -1,5 +1,5 @@
 # vim: set filetype=dockerfile
-FROM quay.io/toolbx-images/alpine-toolbox:edge
+FROM quay.io/toolbx-images/debian-toolbox:latest
 
 LABEL com.github.containers.toolbox="true" \
       usage="This image is meant to be used with the toolbox or distrobox command" \
@@ -7,19 +7,17 @@ LABEL com.github.containers.toolbox="true" \
       maintainer="CAncun <plop1@bawah.fr>"
 
 # Copy the setup scripts and package list
-COPY ../scripts/alpine.sh /
+COPY ../scripts/debian.sh /
 COPY ../scripts/extra-packages.sh /
 COPY ../scripts/distrobox-shims.sh /
-COPY ../packages/alpine.packages /
-COPY ../packages/alpine-testing.packages /
+COPY ../packages/debian.packages /
 COPY ../packages/python.packages /
 
 # Run the setup scripts
-RUN chmod +x alpine.sh distrobox-shims.sh extra-packages.sh && /alpine.sh
+RUN chmod +x debian.sh distrobox-shims.sh extra-packages.sh && /debian.sh
 RUN rm \
-  /alpine.sh \
+  /debian.sh \
   /extra-packages.sh \
   /distrobox-shims.sh \
-  /alpine.packages \
-  /alpine-testing.packages \
+  /debian.packages \
   /python.packages \
