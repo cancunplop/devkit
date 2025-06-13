@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2025-06-13)
+
+
+### Features
+
+* add debian ([765196a](https://github.com/cancunplop/devkit/commit/765196a9d6ab62f033b788412406bcf0f2369ab6))
+* **debian:** replace extra-packages.sh by homebrew packages ([8bc3b54](https://github.com/cancunplop/devkit/commit/8bc3b54886962eb2a8b501cd8efb2ac4a39044f7))
+
 ## [1.2.0](https://github.com/ublue-os/boxkit/compare/v1.1.0...v1.2.0) (2025-01-04)
 
 
