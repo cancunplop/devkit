@@ -12,12 +12,13 @@ COPY ../scripts/extra-packages.sh /
 COPY ../scripts/distrobox-shims.sh /
 COPY ../packages/debian.packages /
 COPY ../packages/python.packages /
+COPY ../packages/brew.packages /
 
 # Run the setup scripts
 RUN chmod +x debian.sh distrobox-shims.sh extra-packages.sh && /debian.sh
-RUN rm \
-  /debian.sh \
-  /extra-packages.sh \
-  /distrobox-shims.sh \
-  /debian.packages \
-  /python.packages \
+#RUN rm \
+#  /debian.sh \
+#  /extra-packages.sh \
+#  /distrobox-shims.sh \
+#  /debian.packages \
+#  /python.packages \
