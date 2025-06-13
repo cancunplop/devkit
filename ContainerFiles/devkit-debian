@@ -8,16 +8,15 @@ LABEL com.github.containers.toolbox="true" \
 
 # Copy the setup scripts and package list
 COPY ../scripts/debian.sh /
-COPY ../scripts/extra-packages.sh /
 COPY ../scripts/distrobox-shims.sh /
 COPY ../packages/debian.packages /
 COPY ../packages/python.packages /
+COPY ../packages/brew.packages /
 
 # Run the setup scripts
-RUN chmod +x debian.sh distrobox-shims.sh extra-packages.sh && /debian.sh
+RUN chmod +x debian.sh distrobox-shims.sh && /debian.sh
 RUN rm \
   /debian.sh \
-  /extra-packages.sh \
   /distrobox-shims.sh \
   /debian.packages \
   /python.packages \
