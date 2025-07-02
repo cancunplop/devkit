@@ -25,9 +25,6 @@ brew bundle --file=<(awk '!/^#/{printf "brew \"%s\"\n",$1}' ./brew.packages) &&
 	brew cleanup &&
 	rm -rf "$(brew --cache)"
 
-# Packages without debian packages
-#./extra-packages.sh
-
 # locale
 export LANG=en_GB.UTF-8
 apt-get install -y locales &&
